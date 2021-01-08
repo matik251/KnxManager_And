@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KNXManager</string>
+    <string name="text_connect_server">Stan połączenia</string>
+    <string name="text_connect_state">Adres: </string>
+    <string name="button_connect_server">Połącz z serwerem</string>
+    <string name="button_processes_view">Procesy</string>
+    <string name="button_data_view">Dane</string>
+</resources>
