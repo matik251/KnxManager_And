@@ -3,9 +3,10 @@ package com.example.knxmanager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -17,22 +18,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sharedPrefs = getSharedPreferences( "KNXManager", Context.MODE_PRIVATE)
+        sharedPrefs = getSharedPreferences( PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS_FULL, "")
+        var ipAddressTB = findViewById<TextView>(R.id.textView2)
+        ipAddressTB.setText(Resources.getSystem().getString(R.string.text_connect_state) + " " + temp.toString())
     }
 
     fun openConnectServer(view: View) {
-        val connectServerActivity = Intent(this, ConnectServer::class.java)
-        startActivity(connectServerActivity)
+        val intent = Intent(view.context, ConnectServer::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        view.context.startActivity(intent)
     }
 
     fun openProcessViewer(view: View) {
-        val processesViewerActivity = Intent(this, ProcessesViewer::class.java)
-        startActivity(processesViewerActivity)
+        val intent = Intent(view.context, ProcessesViewer::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        view.context.startActivity(intent)
     }
 
     fun openDataViewer(view: View) {
-        val dataViewerActivity = Intent(this, DataViewer::class.java)
-        startActivity(dataViewerActivity)
+        val intent = Intent(view.context, DataViewer::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        view.context.startActivity(intent)
     }
 
 }

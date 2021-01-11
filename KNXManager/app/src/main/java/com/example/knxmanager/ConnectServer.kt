@@ -1,10 +1,8 @@
 package com.example.knxmanager
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -23,9 +21,15 @@ class ConnectServer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connect_server)
-        sharedPrefs = getSharedPreferences(R.string.preference_file_key.toString(), Context.MODE_PRIVATE)
-    }
+        sharedPrefs = getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
 
+        var serverIpET = findViewById<EditText>(R.id.editTextTextServerIp)
+        var serverPortET = findViewById<EditText>(R.id.editTextTextServerPort)
+        var temp = sharedPrefs.getString(PREFERENCE_FILE_KEY, "")
+        serverIpET.setText(temp)
+        temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS_PORT, "")
+        serverPortET.setText(temp)
+    }
 
     fun testServerConnection(view: View) {
 
@@ -45,21 +49,22 @@ class ConnectServer : AppCompatActivity() {
                 serverResponseT.text = srvResponseString
                 ipAddress = urlString
             }
-
         }
         serverResponseT.text = srvResponseString
     }
 
-    fun saveAndExit(){
+    fun saveAndExit(view: View){
+        //TODO dodac sprawdzanie czy 200
         var spEdit = sharedPrefs.edit()
         var serverIpET = findViewById<EditText>(R.id.editTextTextServerIp)
         var serverPortET = findViewById<EditText>(R.id.editTextTextServerPort)
 
-        spEdit.putString(R.string.preference_ip_address_full.toString(), ipAddress)
-        spEdit.putString(R.string.preference_ip_address.toString(), serverIpET.text.toString())
-        spEdit.putString(R.string.preference_ip_address_port.toString(), serverPortET.text.toString())
+        spEdit.putString(PREFERENCE_IP_ADDRESS_FULL, ipAddress)
+        spEdit.putString(PREFERENCE_IP_ADDRESS, serverIpET.text.toString())
+        spEdit.putString(PREFERENCE_IP_ADDRESS_PORT, serverPortET.text.toString())
+        spEdit.putInt(PREFERENCE_SERWER_STATE, 1)
 
         spEdit.commit()
-
+        super.onBackPressed();
     }
 }
