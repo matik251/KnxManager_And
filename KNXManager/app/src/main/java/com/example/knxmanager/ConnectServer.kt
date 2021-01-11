@@ -35,13 +35,15 @@ class ConnectServer : AppCompatActivity() {
         serverIpET = findViewById<EditText>(R.id.editTextTextServerIp)
         serverPortET = findViewById<EditText>(R.id.editTextTextServerPort)
         serverResponseT = findViewById<TextView>(R.id.textView3Response)
-        conProgBar.setVisibility(View.GONE)
+        conProgBar = findViewById<ProgressBar>(R.id.connectionProgressBar)
 
-        var temp = sharedPrefs.getString(PREFERENCE_FILE_KEY, "")
+        var temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS, "")
         serverIpET.setText(temp)
         temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS_PORT, "")
         serverPortET.setText(temp)
+
     }
+
 
     fun testServerConnection(view: View) {
         conProgBar.setVisibility(View.VISIBLE)

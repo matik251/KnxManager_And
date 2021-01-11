@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         var temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS_FULL, "")
         var ipAddressTB = findViewById<TextView>(R.id.textView2)
-        ipAddressTB.setText(Resources.getSystem().getString(R.string.text_connect_state) + " " + temp.toString())
+        try{
+            temp = Resources.getSystem().getString(R.string.text_connect_state).toString() + " " + temp.toString()
+        }catch (e:Resources.NotFoundException){
+        }
+        ipAddressTB.setText(temp)
     }
 
     fun openConnectServer(view: View) {
