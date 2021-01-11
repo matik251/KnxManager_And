@@ -15,6 +15,14 @@
     <string name="btn_test_connection">Testuj</string>
     <string name="btn_connect">Połącz</string>
 
+
+
     <!--Processes view -->
     <!--Data view -->
+
+
+    <string name="preference_file_key">KNXManager</string>
+    <string name="preference_ip_address_full">IPAddressFull</string>
+    <string name="preference_ip_address">IPAddress</string>
+    <string name="preference_ip_address_port">IPAddressPORT</string>
 </resources>

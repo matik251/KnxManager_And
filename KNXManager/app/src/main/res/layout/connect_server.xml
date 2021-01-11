@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="@string/tb_server_ip_hint"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="numberSigned|number|text|numberDecimal|phone" />
 
         <TextView
             android:id="@+id/textView6"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="@string/tb_server_port_hint"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="numberSigned|number|text|numberDecimal|phone" />
 
         <Button
             android:id="@+id/button2"
