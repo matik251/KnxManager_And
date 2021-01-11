@@ -60,7 +60,7 @@ class ConnectServer : AppCompatActivity() {
              * https://developer.android.com/topic/libraries/architecture/coroutines */
             lifecycleScope.launch {
                 try{
-                    val users : Hellos = service.getServerHello()
+                    val users = service.getServerHello()
                     srvResponseString = users.toString()
                 }catch(e:Exception){
                     srvResponseString = e.message.toString()
@@ -72,7 +72,9 @@ class ConnectServer : AppCompatActivity() {
         //}
     }
 
-
+    /*
+    * Omit certs
+    * */
     fun getUnsafeOkHttpClient(): OkHttpClient.Builder? {
         return try {
             // Create a trust manager that does not validate certificate chains
@@ -114,11 +116,7 @@ class ConnectServer : AppCompatActivity() {
 
 /* Kotlin data/model classes that map the JSON response, we could also add Moshi
  * annotations to help the compiler with the mappings on a production app */
-data class UserResponse(val results: List<User>)
-data class User(val email: String, val phone: String)
 
-
-data class Hellos(val results : List<ServerHello>)
 data class ServerHello(val id: Int, val homeText: String, val time : String)
 
 
@@ -127,5 +125,5 @@ data class ServerHello(val id: Int, val homeText: String, val time : String)
  * these at runtime */
 interface ServerHelloService {
     @GET("/api")
-    suspend fun getServerHello(): Hellos
+    suspend fun getServerHello(): List<ServerHello>
 }
