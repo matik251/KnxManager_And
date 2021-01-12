@@ -16,8 +16,14 @@
     <string name="btn_connect">Połącz</string>
 
 
-
     <!--Processes view -->
+
     <!--Data view -->
+    <string name="DG_1">TID</string>
+    <string name="DG_2">Timestamp</string>
+    <string name="DG_3">RawData</string>
+    <string name="DG_4">Service</string>
+    <string name="DG_5">FrameFormat</string>
+    <string name="DG_6">FileName</string>
 
 </resources>

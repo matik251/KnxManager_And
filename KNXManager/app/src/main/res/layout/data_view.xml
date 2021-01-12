@@ -1,32 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DataViewer"
+    android:stretchColumns="1,2,3,4,5,6"
+    android:layout_margin="8dp"
+    >
 
-    <LinearLayout
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="125dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+    <TableRow>
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dane"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/DG_1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-    </LinearLayout>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/DG_2"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/DG_3"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:text="@string/DG_4"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:text="@string/DG_5"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_column="1"
+            android:text="@string/DG_6"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dgRecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</TableLayout>

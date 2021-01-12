@@ -14,7 +14,7 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.*
 import kotlin.jvm.Throws
 
-open class ConnectionTester{
+open class ConnectionTesterService{
 
     // get Hello from server
     suspend fun testServerConnection(urlString : String) : String {

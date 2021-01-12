@@ -2,7 +2,6 @@ package com.example.knxmanager
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -52,7 +51,7 @@ class ConnectServer : AppCompatActivity() {
         var srvResponseString = ""
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                srvResponseString = ConnectionTester().testServerConnection(urlString)
+                srvResponseString = ConnectionTesterService().testServerConnection(urlString)
             } catch (e: Exception) {
                 srvResponseString = e.message.toString()
             }

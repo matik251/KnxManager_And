@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1,2,3,4,5,6"
+    >
+
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:id="@+id/TID"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_column="1"
+            android:text="@+id/Timestamp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_column="1"
+            android:text="@+id/RawData"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_column="1"
+            android:text="@+id/Service"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_column="1"
+            android:text="@+id/FramFormat"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_column="1"
+            android:id="@+id/FileName"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+    </TableRow>
+
+</TableLayout>
