@@ -2,14 +2,14 @@
 <TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     tools:context=".DataViewer"
     android:stretchColumns="1,2,3,4,5,6"
     android:layout_margin="8dp"
     >
 
-    <TableRow>
+    <TableRow android:isScrollContainer="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,11 +60,15 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </TableRow>
+    <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dgRecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dgRecyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
+    </HorizontalScrollView >
 </TableLayout>

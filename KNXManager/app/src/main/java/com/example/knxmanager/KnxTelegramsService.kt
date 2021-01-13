@@ -51,7 +51,9 @@ class KnxTelegramsService(urlString : String) {
     fun getKnxTelegrams() : List<KnxTelegram>{
         try {
             //TODO napisac serwis do telegramów
-            val telegram : KnxTelegram = KnxTelegram(2137,"", Date(LocalDateTime.now().toString()),"DummyService","Cemi","0123456789ABCDEF",23,"test.xml")
+            var number = 2
+            var test : Int? = 123
+            val telegram : KnxTelegram = KnxTelegram( number.toLong(),"LocalDateTime.now().toString()", LocalDateTime.now().toString(),"DummyService","Cemi","0123456789ABCDEF", test,"test.xml")
             val temp : MutableList<KnxTelegram> = ArrayList<KnxTelegram>(0)
             temp.add(telegram)
             return temp

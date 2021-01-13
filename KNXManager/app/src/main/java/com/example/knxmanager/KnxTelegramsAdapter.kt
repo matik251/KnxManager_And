@@ -1,6 +1,7 @@
 package com.example.knxmanager
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knxmanager.KnxTelegramsAdapter.*
+import java.lang.Exception
 
 class KnxTelegramsAdapter(_context: Context, _list: List<KnxTelegram>) : RecyclerView.Adapter<ViewHolder>() {
     lateinit var context : Context
@@ -54,12 +56,16 @@ class KnxTelegramsAdapter(_context: Context, _list: List<KnxTelegram>) : Recycle
 
         constructor(itemView: View) : super(itemView)
         {
-            TID = itemView.findViewById<TextView>(R.id.TID)
-            Timestamp = itemView.findViewById<TextView>(R.id.Timestamp)
-            RawData = itemView.findViewById<TextView>(R.id.RawData)
-            Service = itemView.findViewById<TextView>(R.id.Service)
-            FrameFormat = itemView.findViewById<TextView>(R.id.FramFormat)
-            FileName = itemView.findViewById<TextView>(R.id.FileName)
+            try{
+                TID = itemView.findViewById<TextView>(R.id.TID)
+                Timestamp = itemView.findViewById<TextView>(R.id.TimeStamp)
+                RawData = itemView.findViewById<TextView>(R.id.RawData)
+                Service = itemView.findViewById<TextView>(R.id.Service)
+                FrameFormat = itemView.findViewById<TextView>(R.id.FrameFormat)
+                FileName = itemView.findViewById<TextView>(R.id.FileName)
+            }catch (e:Exception){
+                Log.e("Exception", e.message.toString())
+            }
         }
     }
 

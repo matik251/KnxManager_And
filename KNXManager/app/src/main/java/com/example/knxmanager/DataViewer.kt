@@ -39,11 +39,11 @@ class DataViewer : AppCompatActivity() {
 }
 
 data class KnxTelegram(
-        var Tid: Long,
-        var TimestampS:String,
-        var Timestamp: Date,
-        var Service: String,
-        var FrameFormat: String,
-        var RawData: String,
+        var Tid: Long?,
+        var TimestampS: String?,
+        var Timestamp: String?,
+        var Service: String?,
+        var FrameFormat: String?,
+        var RawData: String?,
         var RawDataLength: Int?,
-        var FileName: String)
+        var FileName: String?)
