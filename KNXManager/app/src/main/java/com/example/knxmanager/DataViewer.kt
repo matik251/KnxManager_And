@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
+import com.example.knxmanager.Adapters.KnxTelegramsAdapter
+import com.example.knxmanager.Services.KnxTelegramsService
 
 class DataViewer : AppCompatActivity() {
 
     lateinit var recyclerView : RecyclerView
     lateinit var telegramsAdapter: KnxTelegramsAdapter
-
     lateinit var telegramList : List<KnxTelegram>
     lateinit var telegramsService: KnxTelegramsService
 
@@ -19,14 +19,16 @@ class DataViewer : AppCompatActivity() {
         setContentView(R.layout.data_view)
 
         recyclerView = findViewById(R.id.dgRecyclerview)
-        telegramsService = KnxTelegramsService("")
+        telegramsService =
+            KnxTelegramsService("")
         setRecyclerView()
     }
 
     private fun setRecyclerView() {
         recyclerView.setHasFixedSize(true)
         recyclerView.setLayoutManager(LinearLayoutManager(this))
-        telegramsAdapter = KnxTelegramsAdapter(this, getList())
+        telegramsAdapter =
+            KnxTelegramsAdapter(this, getList())
         recyclerView.adapter = telegramsAdapter
     }
 

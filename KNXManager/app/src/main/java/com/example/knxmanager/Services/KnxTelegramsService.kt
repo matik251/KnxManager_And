@@ -1,15 +1,14 @@
-package com.example.knxmanager
+package com.example.knxmanager.Services
 
 import android.util.Log
+import com.example.knxmanager.KnxTelegram
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
-import java.time.Instant
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.net.ssl.*
 import kotlin.jvm.Throws
@@ -53,8 +52,21 @@ class KnxTelegramsService(urlString : String) {
             //TODO napisac serwis do telegramów
             var number = 2
             var test : Int? = 123
-            val telegram : KnxTelegram = KnxTelegram( number.toLong(),"LocalDateTime.now().toString()", LocalDateTime.now().toString(),"DummyService","Cemi","0123456789ABCDEF", test,"test.xml")
+            val telegram : KnxTelegram =
+                KnxTelegram(
+                    number.toLong(),
+                    "LocalDateTime.now().toString()",
+                    LocalDateTime.now().toString(),
+                    "DummyService",
+                    "Cemi",
+                    "0123456789ABCDEF",
+                    test,
+                    "test.xml"
+                )
             val temp : MutableList<KnxTelegram> = ArrayList<KnxTelegram>(0)
+            temp.add(telegram)
+            temp.add(telegram)
+            temp.add(telegram)
             temp.add(telegram)
             return temp
         }catch (e : Exception){

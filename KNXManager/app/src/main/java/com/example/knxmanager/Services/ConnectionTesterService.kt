@@ -1,9 +1,5 @@
-package com.example.knxmanager
+package com.example.knxmanager.Services
 
-import android.app.Activity
-import android.content.Context
-import android.content.SharedPreferences
-import android.provider.Settings.Global.getString
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

@@ -17,6 +17,11 @@
 
 
     <!--Processes view -->
+    <string name="pv_label_info_1_ProcessType">Typ Procesu: </string>
+    <string name="pv_label_info_2_ProcessIp">Ip dla procesu: </string>
+    <string name="pv_label_info_3_FileName">Przetwarzany Plik: </string>
+    <string name="pv_label_info_4_Numbers">Przetworzono/Wszystkie: </string>
+
 
     <!--Data view -->
     <string name="DG_1">TID</string>

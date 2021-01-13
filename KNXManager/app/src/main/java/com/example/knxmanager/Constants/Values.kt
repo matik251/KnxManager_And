@@ -1,4 +1,4 @@
-package com.example.knxmanager
+package com.example.knxmanager.Constants
 
 const val  PREFERENCE_FILE_KEY : String = "KNXMANAGER"
 

@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.knxmanager.Constants.*
+import com.example.knxmanager.Services.ConnectionTesterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +53,8 @@ class ConnectServer : AppCompatActivity() {
         var srvResponseString = ""
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                srvResponseString = ConnectionTesterService().testServerConnection(urlString)
+                srvResponseString = ConnectionTesterService()
+                    .testServerConnection(urlString)
             } catch (e: Exception) {
                 srvResponseString = e.message.toString()
             }
