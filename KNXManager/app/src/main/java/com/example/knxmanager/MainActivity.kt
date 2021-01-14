@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.knxmanager.Constants.PREFERENCE_FILE_KEY
-import com.example.knxmanager.Constants.PREFERENCE_IP_ADDRESS_FULL
+import com.example.knxmanager.Model.PREFERENCE_FILE_KEY
+import com.example.knxmanager.Model.PREFERENCE_IP_ADDRESS_FULL
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,5 +1,6 @@
 package com.example.knxmanager.Services
 
+import com.example.knxmanager.Model.ServerHello
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -97,10 +98,6 @@ open class ConnectionTesterService{
 
 }
 
-/* Kotlin data/model classes that map the JSON response, we could also add Moshi
- * annotations to help the compiler with the mappings on a production app */
-
-data class ServerHello(val id: Int, val homeText: String, val time : String)
 
 
 /* Retrofit service that maps the different endpoints on the API, you'd create one

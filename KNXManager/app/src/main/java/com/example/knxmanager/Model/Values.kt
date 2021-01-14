@@ -1,4 +1,4 @@
-package com.example.knxmanager.Constants
+package com.example.knxmanager.Model
 
 const val  PREFERENCE_FILE_KEY : String = "KNXMANAGER"
 
@@ -8,5 +8,5 @@ const val  PREFERENCE_IP_ADDRESS_PORT : String = "IPADDRESSPORT"
 
 const val  PREFERENCE_SERWER_STATE : String = "SERWER_STATE"
 
-public final  class Values {
+ class Values {
 }

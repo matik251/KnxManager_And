@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.knxmanager.Constants.*
+import com.example.knxmanager.Model.*
 import com.example.knxmanager.Services.ConnectionTesterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

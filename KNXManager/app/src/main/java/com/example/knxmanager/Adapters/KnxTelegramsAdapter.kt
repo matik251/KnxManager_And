@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knxmanager.Adapters.KnxTelegramsAdapter.*
-import com.example.knxmanager.KnxTelegram
+import com.example.knxmanager.Model.KnxTelegram
 import com.example.knxmanager.R
 import java.lang.Exception
 
