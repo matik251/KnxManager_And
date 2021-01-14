@@ -10,16 +10,17 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.knxmanager.Model.KnxProcess
 import com.example.knxmanager.R
+import com.txusballesteros.widgets.FitChart
 import java.lang.Exception
 
 
 class ProcessAdapter(_context: Context, _list: List<KnxProcess>) : RecyclerView.Adapter<ProcessAdapter.ViewHolder>() {
     lateinit var context : Context
-    lateinit var telegramList  : List<KnxProcess>
+    lateinit var processList  : List<KnxProcess>
 
     init{
         context  = _context
-        telegramList = _list
+        processList = _list
     }
 
     @NonNull
@@ -31,26 +32,27 @@ class ProcessAdapter(_context: Context, _list: List<KnxProcess>) : RecyclerView.
 
     @Override
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(telegramList != null && telegramList.isNotEmpty()){
-            var telegram: KnxProcess = telegramList.get(position)
+        if(processList != null && processList.isNotEmpty()){
+            var telegram: KnxProcess = processList.get(position)
 
-            holder.progressChart.setText(telegram.ProcessId.toString())
-            holder.percentage.setText(telegram.ProcessId.toString())
-            holder.numbers.setText(telegram.ProcessId.toString())
-            holder.processType.setText(telegram.ProcessId.toString())
-            holder.processIp.setText(telegram.ProcessId.toString())
-            holder.fileName.setText(telegram.ProcessId.toString())
+
+            holder.progressChart.setValue(telegram.getPercentageToChart())
+            holder.percentage.setText(telegram.getPercentageText())
+            holder.numbers.setText(telegram.getProcessStatsText())
+            holder.processType.setText(telegram.ProcessType)
+            holder.processIp.setText(telegram.ProcessIp)
+            holder.fileName.setText(telegram.ProcessedFile)
 
         }
     }
 
     @Override
     override fun getItemCount(): Int {
-        return telegramList.count()
+        return processList.count()
     }
 
     class ViewHolder : RecyclerView.ViewHolder {
-        lateinit var progressChart: TextView
+        lateinit var progressChart: FitChart
         lateinit var percentage: TextView
         lateinit var numbers: TextView
         lateinit var processType: TextView

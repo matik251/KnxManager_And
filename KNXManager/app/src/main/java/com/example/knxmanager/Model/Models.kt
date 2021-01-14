@@ -1,5 +1,7 @@
 package com.example.knxmanager.Model
 
+import java.lang.Math.round
+
 
 /* Kotlin data/model classes that map the JSON response, we could also add Moshi
  * annotations to help the compiler with the mappings on a production app */
@@ -30,12 +32,33 @@ data class KnxProcess(var ProcessId : Int){
     var TotalTelegramNr : Int?
 
     init{
-        ProcessId = 0
-        ProcessName = ""
-        ProcessIp = ""
-        ProcessType = ""
-        ProcessedFile = ""
-        AcutalTelegramNr = 0
-        TotalTelegramNr = 0
+        ProcessId = 123
+        ProcessName = "Testowy"
+        ProcessIp = "255.255.255.0"
+        ProcessType = "Testowy"
+        ProcessedFile = "Testsowy.xml"
+        AcutalTelegramNr = 30
+        TotalTelegramNr = 100
+    }
+
+    fun getPercentage(): Float{
+        var floatPercentage : Float = AcutalTelegramNr!!.toFloat()
+        floatPercentage = TotalTelegramNr?.let { floatPercentage?.div(it) }!!
+        return floatPercentage
+    }
+
+    fun getPercentageText(): String{
+        return round(getPercentageToChart()).toString() + "%"
+    }
+
+
+    fun getPercentageToChart(): Float{
+        var floatPercentage : Float = AcutalTelegramNr!!.toFloat()
+        floatPercentage = TotalTelegramNr?.let { floatPercentage?.div(it) }!!
+        return floatPercentage * 100.0f
+    }
+
+    fun getProcessStatsText(): String{
+        return AcutalTelegramNr.toString() + "/" + TotalTelegramNr.toString()
     }
 }
