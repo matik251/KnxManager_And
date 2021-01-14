@@ -55,11 +55,9 @@ class ProcessService(urlString : String) {
         try {
             //TODO
             val process : KnxProcess = KnxProcess(0)
-            val temp : MutableList<KnxProcess> = ArrayList<KnxProcess>(0)
-            temp.add(process)
-            temp.add(process)
-            temp.add(process)
-            temp.add(process)
+            response.add(process)
+            response.add(process)
+            response.add(process)
         }catch (e : Exception){
             e.message.toString()
         }
