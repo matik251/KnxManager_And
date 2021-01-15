@@ -43,12 +43,14 @@ class MainActivity : AppCompatActivity() {
     fun openProcessViewer(view: View) {
         val intent = Intent(view.context, ProcessesViewer::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        intent.putExtra(PREFERENCE_IP_ADDRESS_FULL, sharedPrefs.getString(PREFERENCE_IP_ADDRESS_FULL, ""))
         view.context.startActivity(intent)
     }
 
     fun openDataViewer(view: View) {
         val intent = Intent(view.context, DataViewer::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        intent.putExtra(PREFERENCE_IP_ADDRESS_FULL, sharedPrefs.getString(PREFERENCE_IP_ADDRESS_FULL, ""))
         view.context.startActivity(intent)
     }
 

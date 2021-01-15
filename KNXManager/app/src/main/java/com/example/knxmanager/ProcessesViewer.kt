@@ -1,5 +1,6 @@
 package com.example.knxmanager
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.example.knxmanager.Adapters.KnxTelegramsAdapter
 import com.example.knxmanager.Adapters.ProcessAdapter
 import com.example.knxmanager.Model.KnxProcess
 import com.example.knxmanager.Model.KnxTelegram
+import com.example.knxmanager.Model.PREFERENCE_IP_ADDRESS_FULL
 import com.example.knxmanager.Services.ProcessService
 
 class ProcessesViewer : AppCompatActivity() {
@@ -17,17 +19,18 @@ class ProcessesViewer : AppCompatActivity() {
     lateinit var processList : List<KnxProcess>
     lateinit var porcessService: ProcessService
 
+    var ipAddress : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.processes_view)
 
-
         processRecyclerView = findViewById<RecyclerView>(R.id.processRecyclerView)
         if (processRecyclerView != null) {
             processRecyclerView = findViewById<RecyclerView>(R.id.processRecyclerView)
         }
-        porcessService = ProcessService("")
+        ipAddress = getIntent().extras?.getString(PREFERENCE_IP_ADDRESS_FULL)  ?: ""
+        porcessService = ProcessService(ipAddress)
         setRecyclerView()
     }
 

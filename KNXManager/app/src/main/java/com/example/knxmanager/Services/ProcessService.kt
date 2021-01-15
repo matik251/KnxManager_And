@@ -31,7 +31,7 @@ class ProcessService(urlString : String) {
             .addConverterFactory(MoshiConverterFactory.create())
             .client(getUnsafeOkHttpClient()?.build())
             .build()
-            .create(ServerHelloService::class.java)
+            .create(ServerProcessesService::class.java)
 
         /* Uses the lifecycle scope to trigger the coroutine. It's important to call this
          * using a scope to follow the structured concurrency principle.
