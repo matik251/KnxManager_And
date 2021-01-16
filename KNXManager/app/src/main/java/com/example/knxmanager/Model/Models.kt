@@ -9,7 +9,12 @@ import java.lang.Math.round
 data class ServerHello(
     val id: Int,
     val homeText: String,
-    val time : String)
+    val time : String){
+
+    fun getString() : String{
+        return homeText + System.lineSeparator() + " server time: " + time
+    }
+}
 
 data class KnxTelegram(
     var Tid: Long?,

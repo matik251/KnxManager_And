@@ -48,9 +48,9 @@ open class ConnectionTesterService{
         return srvResponseString;
     }
 
-    fun getServerHelloText(response : ServerHello, ) : String{
+    fun getServerHelloText(response : ServerHello ) : String{
         return try {
-            response.homeText.toString() + System.lineSeparator() + " server time: " + response.time.toString()
+            response.getString()
         }catch (e : Exception){
             e.message.toString()
         }
