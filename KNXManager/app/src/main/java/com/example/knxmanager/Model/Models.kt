@@ -17,38 +17,38 @@ data class ServerHello(
 }
 
 data class KnxTelegram(
-    var Tid: Long?,
-    var TimestampS: String?,
-    var Timestamp: String?,
-    var Service: String?,
-    var FrameFormat: String?,
-    var RawData: String?,
-    var RawDataLength: Int?,
-    var FileName: String?)
+        var tid: Int,
+        var timestampS: String,
+        var timestamp: String?,
+        var service: String,
+        var frameFormat: String,
+        var rawData: String,
+        var rawDataLength: Int?,
+        var fileName: String?)
 
 
-data class KnxProcess(var ProcessId : Int){
-    var ProcessName : String?
-    var ProcessIp : String?
-    var ProcessType : String?
+data class KnxProcess(var pid : Int){
+    var processName : String?
+    var processIp : String?
+    var processType : String?
 
-    var ProcessedFile : String?
-    var AcutalTelegramNr : Int?
-    var TotalTelegramNr : Int?
+    var processedFile : String?
+    var actualTelegramNr : Int?
+    var totalTelegramNr : Int?
 
     init{
-        ProcessId = 123
-        ProcessName = "Testowy"
-        ProcessIp = "255.255.255.0"
-        ProcessType = "Testowy"
-        ProcessedFile = "Testsowy.xml"
-        AcutalTelegramNr = 30
-        TotalTelegramNr = 100
+        pid = 0
+        processName = ""
+        processIp = ""
+        processType = ""
+        processedFile = ""
+        actualTelegramNr = 0
+        totalTelegramNr = 0
     }
 
     fun getPercentage(): Float{
-        var floatPercentage : Float = AcutalTelegramNr!!.toFloat()
-        floatPercentage = TotalTelegramNr?.let { floatPercentage?.div(it) }!!
+        var floatPercentage : Float = actualTelegramNr!!.toFloat()
+        floatPercentage = totalTelegramNr?.let { floatPercentage?.div(it) }!!
         return floatPercentage
     }
 
@@ -58,12 +58,14 @@ data class KnxProcess(var ProcessId : Int){
 
 
     fun getPercentageToChart(): Float{
-        var floatPercentage : Float = AcutalTelegramNr!!.toFloat()
-        floatPercentage = TotalTelegramNr?.let { floatPercentage?.div(it) }!!
+        var floatPercentage : Float = actualTelegramNr!!.toFloat()
+        if(this.totalTelegramNr?.equals(0)!!) {
+            floatPercentage = totalTelegramNr?.let { floatPercentage?.div(it) }!!
+        }
         return floatPercentage * 100.0f
     }
 
     fun getProcessStatsText(): String{
-        return AcutalTelegramNr.toString() + "/" + TotalTelegramNr.toString()
+        return actualTelegramNr.toString() + "/" + totalTelegramNr.toString()
     }
 }

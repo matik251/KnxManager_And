@@ -34,12 +34,12 @@ class KnxTelegramsAdapter(_context: Context, _list: List<KnxTelegram>) : Recycle
         if(telegramList != null && telegramList.isNotEmpty()){
             var telegram: KnxTelegram = telegramList.get(position)
 
-            holder.TID.setText(telegram.Tid.toString())
-            holder.Timestamp.setText(telegram.Timestamp.toString())
-            holder.RawData.setText(telegram.RawData)
-            holder.Service.setText(telegram.Service)
-            holder.FrameFormat.setText(telegram.FrameFormat)
-            holder.FileName.setText(telegram.FileName)
+            holder.TID.setText(telegram.tid.toString())
+            holder.Timestamp.setText(telegram.timestamp.toString())
+            holder.RawData.setText(telegram.rawData)
+            holder.Service.setText(telegram.service)
+            holder.FrameFormat.setText(telegram.frameFormat)
+            holder.FileName.setText(telegram.fileName)
         }
     }
 

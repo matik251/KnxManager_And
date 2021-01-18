@@ -5,6 +5,7 @@ import com.example.knxmanager.Model.KnxTelegram
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -18,7 +19,6 @@ class KnxTelegramsService(urlString : String) {
     suspend fun getKnxTelegrams(urlString : String) : List<KnxTelegram> {
 
         var srvResponse :List<KnxTelegram> = ArrayList<KnxTelegram>(0)
-        // Loa
 
         /* Creates an instance of the UserService using a simple Retrofit builder using Moshi
     * as a JSON converter, this will append the endpoints set on the UserService interface
@@ -29,7 +29,7 @@ class KnxTelegramsService(urlString : String) {
                 .addConverterFactory(MoshiConverterFactory.create())
                 .client(getUnsafeOkHttpClient()?.build())
                 .build()
-                .create(ServerHelloService::class.java)
+                .create(KnxTelegramsApi::class.java)
 
         /* Uses the lifecycle scope to trigger the coroutine. It's important to call this
          * using a scope to follow the structured concurrency principle.
@@ -37,7 +37,8 @@ class KnxTelegramsService(urlString : String) {
          * https://developer.android.com/topic/libraries/architecture/coroutines */
         //lifecycleScope.launch {
         try{
-            srvResponse = getDummyKnxTelegrams()
+            srvResponse = service.getKnxTelegramsApi()
+            //srvResponse = getDummyKnxTelegrams()
         }catch(e:Exception){
         }
         /* This will print the result of the network call to the Logcat. This runs on the
@@ -54,7 +55,7 @@ class KnxTelegramsService(urlString : String) {
             var test : Int? = 123
             val telegram : KnxTelegram =
                 KnxTelegram(
-                    number.toLong(),
+                    number,
                     "LocalDateTime.now().toString()",
                     LocalDateTime.now().toString(),
                     "DummyService",
@@ -114,4 +115,13 @@ class KnxTelegramsService(urlString : String) {
             throw RuntimeException(e)
         }
     }
+
+}
+
+/* Retrofit service that maps the different endpoints on the API, you'd create one
+ * method per endpoint, and use the @Path, @Query and other annotations to customize
+ * these at runtime */
+interface KnxTelegramsApi {
+    @GET("/api/KnxTelegrams")
+    suspend fun getKnxTelegramsApi(): List<KnxTelegram>
 }

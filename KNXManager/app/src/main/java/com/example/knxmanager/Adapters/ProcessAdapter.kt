@@ -39,9 +39,9 @@ class ProcessAdapter(_context: Context, _list: List<KnxProcess>) : RecyclerView.
             holder.progressChart.setValue(telegram.getPercentageToChart())
             holder.percentage.setText(telegram.getPercentageText())
             holder.numbers.setText(telegram.getProcessStatsText())
-            holder.processType.setText(telegram.ProcessType)
-            holder.processIp.setText(telegram.ProcessIp)
-            holder.fileName.setText(telegram.ProcessedFile)
+            holder.processType.setText(telegram.processType)
+            holder.processIp.setText(telegram.processIp)
+            holder.fileName.setText(telegram.processedFile)
 
         }
     }

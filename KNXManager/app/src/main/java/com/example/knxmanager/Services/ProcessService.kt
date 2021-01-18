@@ -39,7 +39,8 @@ class ProcessService(urlString : String) {
          * https://developer.android.com/topic/libraries/architecture/coroutines */
         //lifecycleScope.launch {
         try{
-            srvResponse = getDummyServerProcessesList()
+            //srvResponse = getDummyServerProcessesList()
+            srvResponse = service.getKnxProcesses()
         }catch(e:Exception){
             Log.e("", e.message.toString())
         }
@@ -111,5 +112,5 @@ class ProcessService(urlString : String) {
  * these at runtime */
 interface ServerProcessesService {
     @GET("/api/KnxProcesses")
-    suspend fun getServerHello(): List<KnxProcess>
+    suspend fun getKnxProcesses(): List<KnxProcess>
 }
