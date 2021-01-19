@@ -1,17 +1,17 @@
 package com.example.knxmanager.Services
 
-import android.util.Log
 import com.example.knxmanager.Model.ServerHello
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import javax.net.ssl.*
 import kotlin.jvm.Throws
 
@@ -47,7 +47,7 @@ open class ConnectionTesterService{
             /* This will print the result of the network call to the Logcat. This runs on the
              * main thread */
         //}
-        srvResponseString = srvResponseString + System.lineSeparator() + "PING: " + getServerConnectionPing(urlString) + "MS"
+        srvResponseString = srvResponseString + System.lineSeparator() + "PING: " + getServerConnectionPing(urlString)
         return srvResponseString
     }
 
@@ -85,32 +85,52 @@ open class ConnectionTesterService{
         return 1
     }
 
-    open fun getServerConnectionPing(urlString: String): String? {
-        var str = ""
-        try {
-            val process = Runtime.getRuntime().exec(
-                    "ping -c 1 $urlString")
-            val reader = BufferedReader(InputStreamReader(
-                    process.inputStream))
-            var i: Int = 0
-            val buffer = CharArray(4096)
-            val output = StringBuffer()
-            var op: Array<String?>
-            var delay: Array<String?>
-            while (reader.read(buffer).also({ i = it }) > 0) output.append(buffer, 0, i)
-            reader.close()
-            op = output.toString().split("\n".toRegex()).toTypedArray()
-            delay = op[1]!!.split("time=".toRegex()).toTypedArray()
 
-            // body.append(output.toString()+"\n");
-            str = delay[1].toString()
-            Log.i("Pinger", "Ping: " + delay[1])
-        } catch (e: IOException) {
-            // body.append("Error\n");
-            e.printStackTrace()
-            str = "error"
+    suspend fun getServerHelloObject(urlString : String) : ServerHello {
+
+        var srvResponseString = ""
+        var response : ServerHello = ServerHello(0,"","")
+
+        /* Creates an instance of the UserService using a simple Retrofit builder using Moshi
+    * as a JSON converter, this will append the endpoints set on the UserService interface
+    * (for example '/api', '/api?results=2') with the base URL set here, resulting on the
+    * full URL that will be called: 'https://randomuser.me/api' */
+        val service = Retrofit.Builder()
+                .baseUrl(urlString)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .client(getUnsafeOkHttpClient()?.build())
+                .build()
+                .create(ServerHelloService::class.java)
+
+        /* Uses the lifecycle scope to trigger the coroutine. It's important to call this
+         * using a scope to follow the structured concurrency principle.
+         * https://medium.com/@elizarov/structured-concurrency-722d765aa952
+         * https://developer.android.com/topic/libraries/architecture/coroutines */
+        //lifecycleScope.launch {
+        try{
+            val users = service.getServerHello()
+            response = users[0]
+        }catch(e:Exception){
+            srvResponseString = e.message.toString()
         }
-        return str
+        /* This will print the result of the network call to the Logcat. This runs on the
+         * main thread */
+        //}
+
+        return response
+    }
+
+
+    open suspend fun getServerConnectionPing(urlString: String): String? {
+        var str = ""
+        var response = getServerHelloObject(urlString)
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS")
+        val dt = LocalDateTime.parse(response.time.toString().replace("+01:00",""), formatter)
+        val zdt: ZonedDateTime = dt.atZone(ZoneId.of("Europe/Paris"))
+        val appTime = System.currentTimeMillis()
+        var millis: Long = zdt.toInstant().toEpochMilli()
+        millis = appTime - millis
+        return millis.toString().replace("-","") + " MS"
     }
 
     fun getServerHelloText(response : ServerHello ) : String{

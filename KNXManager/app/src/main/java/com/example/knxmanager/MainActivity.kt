@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Resources
+import android.media.Image
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var sharedPrefs: SharedPreferences
     lateinit var mainProgressBar: ProgressBar
+    lateinit  var ipAddressTB: TextView
+    lateinit  var connectionGoodIcon: ImageView
     var ServerIpAddress: String = ""
     var connectionTesterService = ConnectionTesterService()
 
@@ -35,7 +39,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         var temp = sharedPrefs.getString(PREFERENCE_IP_ADDRESS_FULL, "")
-        var ipAddressTB = findViewById<TextView>(R.id.textView2)
+        ipAddressTB = findViewById<TextView>(R.id.textView2)
+        connectionGoodIcon = findViewById<ImageView>(R.id.connectionGoodImage)
+        connectionGoodIcon.setVisibility(View.GONE)
         try {
             ServerIpAddress = temp.toString()
             temp = Resources.getSystem().getString(R.string.text_connect_state).toString() + " " + temp.toString()
@@ -75,8 +81,10 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if(connection == 1){
                     mainProgressBar.setVisibility(View.GONE)
+                    connectionGoodIcon.setVisibility(View.VISIBLE)
                 }else{
                     mainProgressBar.setVisibility(View.VISIBLE)
+                    connectionGoodIcon.setVisibility(View.GONE)
                 }
             }
         }
