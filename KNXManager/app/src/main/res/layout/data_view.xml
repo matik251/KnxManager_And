@@ -77,5 +77,6 @@
             android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
+
     </HorizontalScrollView >
 </TableLayout>

@@ -60,9 +60,9 @@ data class KnxProcess(var pid : Int){
     fun getPercentageToChart(): Float{
         var floatPercentage : Float = actualTelegramNr!!.toFloat()
         if(this.totalTelegramNr?.equals(0)!!) {
-            floatPercentage = totalTelegramNr?.let { floatPercentage?.div(it) }!!
+            return 0f
         }
-        return floatPercentage * 100.0f
+        return 100.0f * totalTelegramNr?.let { floatPercentage?.div(it) }!!
     }
 
     fun getProcessStatsText(): String{
